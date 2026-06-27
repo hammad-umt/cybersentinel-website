@@ -16,7 +16,7 @@ export function Download() {
         <SectionHeading
           eyebrow="Get Started"
           title="Install CyberSentinel on your workstation"
-          description="Download the latest build for your platform. The desktop app connects to the FastAPI backend and Supabase for threat data storage and sync."
+          description="Download the Windows installer — it bundles the Flutter desktop app, local FastAPI engine, Npcap, and Supabase connectivity. No separate Python or backend setup required."
           align="center"
           className="mx-auto"
         />
@@ -29,6 +29,7 @@ export function Download() {
             size={DOWNLOADS.windows.size}
             href={DOWNLOADS.windows.href}
             requirements={DOWNLOADS.windows.requirements}
+            available={DOWNLOADS.windows.available}
           />
           <DownloadCard
             icon={Terminal}
@@ -37,6 +38,7 @@ export function Download() {
             size={DOWNLOADS.linux.size}
             href={DOWNLOADS.linux.href}
             requirements={DOWNLOADS.linux.requirements}
+            available={DOWNLOADS.linux.available}
           />
         </div>
 
@@ -49,7 +51,7 @@ export function Download() {
               { icon: Cpu, text: "64-bit processor (x86_64)" },
               { icon: HardDrive, text: "4 GB RAM minimum (8 GB recommended)" },
               { icon: HardDrive, text: "500 MB available disk space" },
-              { icon: Wifi, text: "Internet for threat intel & updates" },
+              { icon: Wifi, text: "Internet for Supabase & threat intel" },
             ].map(({ icon: Icon, text }) => (
               <li key={text} className="flex items-start gap-2.5 text-sm text-muted">
                 <Icon className="mt-0.5 h-4 w-4 shrink-0 text-accent/70" />
@@ -70,6 +72,7 @@ function DownloadCard({
   size,
   href,
   requirements,
+  available,
 }: {
   icon: typeof Monitor;
   platform: string;
@@ -77,6 +80,7 @@ function DownloadCard({
   size: string;
   href: string;
   requirements: string;
+  available: boolean;
 }) {
   return (
     <div className="flex flex-col rounded-xl border border-border bg-background/50 p-6 transition-colors hover:border-accent/25">
@@ -94,9 +98,15 @@ function DownloadCard({
       <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">
         {requirements}
       </p>
-      <Button href={href} variant="primary" className="mt-6 w-full">
-        Download for {platform}
-      </Button>
+      {available ? (
+        <Button href={href} variant="primary" className="mt-6 w-full">
+          Download for {platform}
+        </Button>
+      ) : (
+        <Button href={href} variant="secondary" className="mt-6 w-full pointer-events-none opacity-60">
+          Coming soon
+        </Button>
+      )}
     </div>
   );
 }

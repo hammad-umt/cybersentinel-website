@@ -47,9 +47,9 @@ export function Hero() {
               <Monitor className="h-4 w-4 shrink-0" />
               Download for Windows
             </Button>
-            <Button href={DOWNLOADS.linux.href} variant="secondary" className="w-full sm:w-auto">
+            <Button href="#download" variant="secondary" className="w-full sm:w-auto">
               <Terminal className="h-4 w-4 shrink-0" />
-              Download for Linux
+              Linux — coming soon
             </Button>
             <Button href="#preview" variant="outline" className="w-full sm:w-auto">
               <Play className="h-4 w-4 shrink-0" />

@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Shield } from "lucide-react";
-import { NAV_LINKS, SITE } from "@/lib/constants";
+import { Menu, X } from "lucide-react";
+import { NAV_LINKS } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
+import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -42,13 +43,8 @@ export function Header() {
       )}
     >
       <div className="section-container flex h-16 items-center justify-between md:h-[4.5rem]">
-        <a href="#" className="group flex min-w-0 items-center gap-2 sm:gap-2.5">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-accent/30 bg-accent/10">
-            <Shield className="h-4 w-4 text-accent" />
-          </div>
-          <span className="truncate text-sm font-semibold tracking-tight text-foreground">
-            {SITE.name}
-          </span>
+        <a href="#" className="group flex min-w-0 items-center">
+          <Logo size={32} showLabel />
         </a>
 
         <nav className="hidden items-center gap-6 lg:gap-8 md:flex">

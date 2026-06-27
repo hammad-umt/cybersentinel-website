@@ -1,5 +1,6 @@
-import { Code2, BookOpen, Mail, Shield } from "lucide-react";
+import { Code2, BookOpen, Mail } from "lucide-react";
 import { SITE, NAV_LINKS } from "@/lib/constants";
+import { Logo } from "@/components/ui/Logo";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -9,12 +10,7 @@ export function Footer() {
       <div className="section-container py-12 sm:py-16 md:py-20">
         <div className="grid gap-10 sm:gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-8 w-8 items-center justify-center rounded-md border border-accent/30 bg-accent/10">
-                <Shield className="h-4 w-4 text-accent" />
-              </div>
-              <span className="text-sm font-semibold">{SITE.name}</span>
-            </div>
+            <Logo size={32} showLabel />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted">
               {SITE.description}
             </p>

@@ -38,10 +38,12 @@ export function Button({
   const classes = cn(baseClasses, variants[variant], className);
 
   if (href !== undefined) {
+    const external = href.startsWith("http");
     return (
       <a
         href={href}
         className={classes}
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         {...(rest as Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href">)}
       >
         {children}

@@ -21,6 +21,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://cybersentinel.dev"),
   title: "CyberSentinel — AI-Powered Threat Detection Platform",
   description:
     "CyberSentinel is a unified desktop security platform combining packet tracing, firewall log analysis, IP reputation checking, and AI threat scoring for smarter cyber defense.",
@@ -39,12 +40,15 @@ export const metadata: Metadata = {
       "Intelligent threat detection and security monitoring in a single cross-platform desktop application.",
     type: "website",
     siteName: "CyberSentinel",
+    url: "https://cybersentinel.dev",
+    images: [{ url: "/og-image.png", width: 1024, height: 1024, alt: "CyberSentinel" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "CyberSentinel — AI-Powered Threat Detection",
     description:
       "Unified desktop security platform with ML-driven threat scoring and real-time monitoring.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,

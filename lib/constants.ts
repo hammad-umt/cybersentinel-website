@@ -4,26 +4,30 @@ export const SITE = {
   description:
     "A unified desktop security platform that correlates packet traces, firewall logs, and threat intelligence into actionable alerts — so analysts spend less time triaging noise and more time responding to real incidents.",
   url: "https://cybersentinel.dev",
-  github: "https://github.com/cybersentinel",
-  docs: "https://github.com/cybersentinel/docs",
-  email: "contact@cybersentinel.dev",
+  github: "https://github.com/hammad-umt/cybersentinel",
+  websiteRepo: "https://github.com/hammad-umt/cybersentinel-website",
+  docs: "https://github.com/hammad-umt/cybersentinel/blob/backend/packaging/README.md",
+  email: "hammadatcybersentinal@gmail.com",
   university: "Final Year Project — Software Engineering - UMT",
 } as const;
 
+/** GitHub Release asset URLs (installer too large to commit to this repo). */
 export const DOWNLOADS = {
   windows: {
     label: "Windows",
     version: "1.0.0",
-    size: "84 MB",
-    href: "/downloads/CyberSentinel-Setup-1.0.0-win64.exe",
-    requirements: "Windows 10/11 (64-bit), 4 GB RAM, 500 MB disk",
+    size: "196 MB",
+    href: "https://github.com/hammad-umt/cybersentinel/releases/download/v1.0.0/CyberSentinel-Setup.exe",
+    requirements: "Windows 10/11 (64-bit), Administrator for install, 4 GB RAM, 500 MB disk",
+    available: true,
   },
   linux: {
     label: "Linux",
     version: "1.0.0",
-    size: "76 MB",
-    href: "/downloads/CyberSentinel-1.0.0-linux-x64.AppImage",
-    requirements: "Ubuntu 20.04+ or equivalent, 4 GB RAM, 500 MB disk",
+    size: "Coming soon",
+    href: "#download",
+    requirements: "Ubuntu 20.04+ (AppImage), libpcap, 4 GB RAM, 500 MB disk",
+    available: false,
   },
 } as const;
 
@@ -84,7 +88,7 @@ export const FEATURES = [
   {
     title: "AI Threat Scoring",
     description:
-      "A composite risk score ranks every event by severity. TensorFlow and scikit-learn models trained on labeled attack data drive prioritization.",
+      "A composite risk score ranks every event by severity. scikit-learn models trained on labeled attack data drive prioritization.",
     icon: "brain" as const,
   },
   {
@@ -114,19 +118,19 @@ export const TECH_STACK = [
     description: "Cross-platform desktop UI with native performance",
   },
   {
-    layer: "API",
-    items: ["FastAPI", "Flask", "REST", "WebSockets"],
-    description: "Async endpoints for ingestion, scoring, and live alerts",
+    layer: "Engine",
+    items: ["FastAPI", "PyInstaller", "REST", "WebSockets"],
+    description: "Local backend auto-started by the desktop app on install",
   },
   {
     layer: "ML Pipeline",
-    items: ["TensorFlow", "scikit-learn", "NumPy", "Pandas"],
+    items: ["scikit-learn", "NumPy", "Pandas", "imbalanced-learn"],
     description: "Anomaly detection and threat classification models",
   },
   {
     layer: "Data & Security",
-    items: ["PostgreSQL", "Supabase", "AES-256", "Threat Intel APIs"],
-    description: "Encrypted storage with real-time sync and external feeds",
+    items: ["PostgreSQL", "Supabase", "JWT", "Threat Intel APIs"],
+    description: "Cloud sync with per-user isolation and encrypted credentials",
   },
 ] as const;
 
@@ -142,27 +146,32 @@ export const FAQ_ITEMS = [
   {
     question: "Which operating systems are supported?",
     answer:
-      "CyberSentinel is available as a cross-platform desktop app for Windows 10/11 (64-bit) and Linux (Ubuntu 20.04+ or AppImage-compatible distros).",
+      "CyberSentinel v1.0 ships as a Windows installer (Windows 10/11, 64-bit). Linux packaging is in progress. The app runs locally and connects to Supabase in the cloud.",
   },
   {
     question: "Do I need an internet connection?",
     answer:
-      "Yes. An active connection is required for IP reputation checks, VirusTotal scanning, and threat intelligence feed updates.",
+      "Yes. An active connection is required for Supabase sync, IP reputation checks, VirusTotal scanning, and threat intelligence feed updates.",
+  },
+  {
+    question: "How does password reset work?",
+    answer:
+      "Use Forgot password in the desktop app. The email link opens this website, which launches CyberSentinel via cybersentinel:// or lets you paste the token manually in the app.",
   },
   {
     question: "How does the AI threat scoring work?",
     answer:
-      "Events pass through TensorFlow and scikit-learn models trained on labeled network attack datasets. Features like source IP reputation, payload patterns, and temporal behavior feed into a composite risk score that drives alert priority.",
+      "Events pass through scikit-learn models trained on labeled network attack datasets. Features like source IP reputation, payload patterns, and temporal behavior feed into a composite risk score that drives alert priority.",
   },
   {
     question: "Is my data encrypted?",
     answer:
-      "Yes. Sensitive logs and credentials stored locally and in Supabase are protected with AES-256 encryption. API keys are handled securely on your machine.",
+      "Yes. Credentials and session tokens use JWT. Data is stored in Supabase with per-user isolation. API keys in the bundled engine config stay on your machine.",
   },
   {
     question: "What are the minimum system requirements?",
     answer:
-      "4 GB RAM, 500 MB free disk space, and a 64-bit processor. For heavy packet capture workloads, 8 GB RAM is recommended.",
+      "4 GB RAM, 500 MB free disk space, and a 64-bit processor. Administrator rights are required on Windows for Npcap packet capture. 8 GB RAM is recommended for heavy capture workloads.",
   },
 ] as const;
 

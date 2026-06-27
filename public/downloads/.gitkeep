@@ -1,2 +1,2 @@
-# Placeholder — replace with your actual Windows installer
-# Build your Flutter app and place CyberSentinel-Setup-1.0.0-win64.exe here
+# Installers are published via GitHub Releases (too large for git).
+# See README.md — do not commit .exe files here.
