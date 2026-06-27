@@ -12,9 +12,9 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <AnimatedSection id="faq" className="py-24 md:py-32">
+    <AnimatedSection id="faq" className="section-pad">
       <div className="section-container">
-        <div className="grid gap-14 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+        <div className="grid gap-8 sm:gap-14 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
           <SectionHeading
             eyebrow="FAQ"
             title="Questions we get asked"
@@ -29,7 +29,7 @@ export function FAQ() {
                   <button
                     type="button"
                     onClick={() => setOpenIndex(isOpen ? null : i)}
-                    className="flex w-full items-start justify-between gap-4 py-5 text-left"
+                    className="flex w-full min-h-11 items-start justify-between gap-4 py-4 text-left sm:py-5"
                     aria-expanded={isOpen}
                   >
                     <span className="text-sm font-medium text-foreground md:text-base">

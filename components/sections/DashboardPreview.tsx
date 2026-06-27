@@ -13,7 +13,7 @@ export function DashboardPreview() {
   const [active, setActive] = useState<TabId>("dashboard");
 
   return (
-    <AnimatedSection id="preview" className="py-24 md:py-32">
+    <AnimatedSection id="preview" className="section-pad">
       <div className="section-container">
         <SectionHeading
           eyebrow="Application Preview"
@@ -23,17 +23,17 @@ export function DashboardPreview() {
           className="mx-auto"
         />
 
-        <div className="mt-10 flex flex-wrap justify-center gap-2">
+        <div className="scroll-x-mobile -mx-1 mt-8 flex gap-2 px-1 sm:mt-10 sm:flex-wrap sm:justify-center">
           {PREVIEW_TABS.map((tab) => (
             <button
               key={tab.id}
               type="button"
               onClick={() => setActive(tab.id)}
               className={cn(
-                "rounded-lg px-4 py-2 text-sm transition-all duration-200",
+                "shrink-0 rounded-lg px-3 py-2.5 text-xs transition-all duration-200 sm:px-4 sm:text-sm",
                 active === tab.id
-                  ? "bg-accent/15 text-accent border border-accent/30"
-                  : "text-muted hover:text-foreground border border-transparent hover:bg-white/[0.03]"
+                  ? "border border-accent/30 bg-accent/15 text-accent"
+                  : "border border-transparent text-muted hover:bg-white/[0.03] hover:text-foreground"
               )}
             >
               {tab.label}
@@ -41,14 +41,14 @@ export function DashboardPreview() {
           ))}
         </div>
 
-        <div className="mt-8 overflow-hidden rounded-xl border border-border-strong bg-surface shadow-[0_0_80px_-20px_rgba(34,211,238,0.12)]">
-          <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-            <div className="flex gap-1.5">
-              <span className="h-3 w-3 rounded-full bg-danger/70" />
-              <span className="h-3 w-3 rounded-full bg-warning/70" />
-              <span className="h-3 w-3 rounded-full bg-success/70" />
+        <div className="mt-6 overflow-hidden rounded-xl border border-border-strong bg-surface shadow-[0_0_80px_-20px_rgba(34,211,238,0.12)] sm:mt-8">
+          <div className="flex min-w-0 items-center gap-2 border-b border-border px-3 py-2.5 sm:px-4 sm:py-3">
+            <div className="flex shrink-0 gap-1.5">
+              <span className="h-2.5 w-2.5 rounded-full bg-danger/70 sm:h-3 sm:w-3" />
+              <span className="h-2.5 w-2.5 rounded-full bg-warning/70 sm:h-3 sm:w-3" />
+              <span className="h-2.5 w-2.5 rounded-full bg-success/70 sm:h-3 sm:w-3" />
             </div>
-            <span className="ml-2 font-mono text-xs text-muted">
+            <span className="ml-1 min-w-0 truncate font-mono text-[10px] text-muted sm:ml-2 sm:text-xs">
               CyberSentinel — {PREVIEW_TABS.find((t) => t.id === active)?.label}
             </span>
           </div>
@@ -60,7 +60,7 @@ export function DashboardPreview() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.25 }}
-              className="p-4 md:p-6"
+              className="p-3 sm:p-4 md:p-6"
             >
               {active === "dashboard" && <DashboardMockup />}
               {active === "packets" && <PacketsMockup />}
@@ -90,9 +90,9 @@ function DashboardMockup() {
   };
 
   return (
-    <div className="grid gap-4 md:grid-cols-[1fr_280px]">
+    <div className="grid gap-4 lg:grid-cols-[1fr_240px] xl:grid-cols-[1fr_280px]">
       <div>
-        <div className="mb-4 grid grid-cols-3 gap-3">
+        <div className="mb-4 grid grid-cols-3 gap-2 sm:gap-3">
           {[
             { label: "Active Threats", value: "7" },
             { label: "Blocked IPs", value: "142" },
@@ -100,12 +100,14 @@ function DashboardMockup() {
           ].map((s) => (
             <div
               key={s.label}
-              className="rounded-lg border border-border bg-background/60 p-3"
+              className="rounded-lg border border-border bg-background/60 p-2 sm:p-3"
             >
-              <p className="font-mono text-xl font-semibold text-foreground">
+              <p className="font-mono text-lg font-semibold text-foreground sm:text-xl">
                 {s.value}
               </p>
-              <p className="text-[10px] text-muted">{s.label}</p>
+              <p className="text-[9px] leading-tight text-muted sm:text-[10px]">
+                {s.label}
+              </p>
             </div>
           ))}
         </div>
@@ -119,22 +121,22 @@ function DashboardMockup() {
             {alerts.map((a) => (
               <div
                 key={a.ip}
-                className="flex items-center justify-between gap-3 px-3 py-2.5"
+                className="flex flex-col gap-1.5 px-3 py-2.5 sm:flex-row sm:items-center sm:justify-between sm:gap-3"
               >
-                <div className="flex items-center gap-2.5">
+                <div className="flex min-w-0 items-center gap-2">
                   <span
                     className={cn(
-                      "rounded border px-1.5 py-0.5 font-mono text-[9px] uppercase",
+                      "shrink-0 rounded border px-1.5 py-0.5 font-mono text-[9px] uppercase",
                       severityColor[a.severity as keyof typeof severityColor]
                     )}
                   >
                     {a.severity}
                   </span>
-                  <span className="font-mono text-xs text-foreground">
+                  <span className="truncate font-mono text-xs text-foreground">
                     {a.ip}
                   </span>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center justify-between gap-3 sm:justify-end">
                   <span className="text-[10px] text-muted">{a.type}</span>
                   <span className="font-mono text-xs text-accent">{a.score}</span>
                 </div>
@@ -147,7 +149,7 @@ function DashboardMockup() {
         <p className="font-mono text-[10px] uppercase tracking-wider text-muted">
           Threat Score Distribution
         </p>
-        <div className="mt-4 flex h-32 items-end gap-1.5">
+        <div className="mt-4 flex h-28 items-end gap-1 sm:h-32 sm:gap-1.5">
           {[20, 45, 72, 94, 58, 33, 81, 15, 67, 40].map((h, i) => (
             <div
               key={i}
@@ -174,24 +176,24 @@ function PacketsMockup() {
   ];
 
   return (
-    <div className="rounded-lg border border-border bg-background/40 font-mono text-xs">
-      <div className="flex items-center justify-between border-b border-border px-3 py-2">
+    <div className="scroll-x-mobile rounded-lg border border-border bg-background/40 font-mono text-xs">
+      <div className="flex min-w-[28rem] items-center justify-between border-b border-border px-3 py-2 sm:min-w-0">
         <span className="text-[10px] uppercase tracking-wider text-muted">
           eth0 — Live Capture
         </span>
-        <span className="flex items-center gap-1.5 text-success">
-          <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
+        <span className="flex shrink-0 items-center gap-1.5 text-success">
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-success" />
           Recording
         </span>
       </div>
-      <table className="w-full">
+      <table className="min-w-[28rem] w-full sm:min-w-0">
         <thead>
           <tr className="border-b border-border text-[10px] text-muted">
-            <th className="px-3 py-2 text-left font-normal">Proto</th>
-            <th className="px-3 py-2 text-left font-normal">Source</th>
-            <th className="px-3 py-2 text-left font-normal">Destination</th>
-            <th className="px-3 py-2 text-left font-normal">Size</th>
-            <th className="px-3 py-2 text-left font-normal">Flag</th>
+            <th className="px-2 py-2 text-left font-normal sm:px-3">Proto</th>
+            <th className="px-2 py-2 text-left font-normal sm:px-3">Source</th>
+            <th className="px-2 py-2 text-left font-normal sm:px-3">Destination</th>
+            <th className="hidden px-2 py-2 text-left font-normal sm:table-cell sm:px-3">Size</th>
+            <th className="px-2 py-2 text-left font-normal sm:px-3">Flag</th>
           </tr>
         </thead>
         <tbody>
@@ -203,11 +205,15 @@ function PacketsMockup() {
                 r.dst.includes("185.220") && "bg-danger/5"
               )}
             >
-              <td className="px-3 py-2 text-accent">{r.proto}</td>
-              <td className="px-3 py-2 text-foreground/80">{r.src}</td>
-              <td className="px-3 py-2 text-foreground/80">{r.dst}</td>
-              <td className="px-3 py-2 text-muted">{r.bytes}</td>
-              <td className="px-3 py-2 text-muted">{r.flag}</td>
+              <td className="px-2 py-2 text-accent sm:px-3">{r.proto}</td>
+              <td className="max-w-[7rem] truncate px-2 py-2 text-foreground/80 sm:max-w-none sm:px-3">
+                {r.src}
+              </td>
+              <td className="max-w-[7rem] truncate px-2 py-2 text-foreground/80 sm:max-w-none sm:px-3">
+                {r.dst}
+              </td>
+              <td className="hidden px-2 py-2 text-muted sm:table-cell sm:px-3">{r.bytes}</td>
+              <td className="px-2 py-2 text-muted sm:px-3">{r.flag}</td>
             </tr>
           ))}
         </tbody>
@@ -226,40 +232,40 @@ function FirewallMockup() {
 
   return (
     <div className="space-y-4">
-      <div className="flex gap-3">
-        <div className="flex-1 rounded-lg border border-border bg-background/40 p-3">
-          <p className="font-mono text-[10px] uppercase text-muted">Anomalies Detected</p>
-          <p className="mt-1 font-mono text-2xl font-semibold text-warning">3</p>
+      <div className="grid grid-cols-3 gap-2 sm:gap-3">
+        <div className="rounded-lg border border-border bg-background/40 p-3">
+          <p className="font-mono text-[10px] uppercase text-muted">Anomalies</p>
+          <p className="mt-1 font-mono text-xl font-semibold text-warning sm:text-2xl">3</p>
         </div>
-        <div className="flex-1 rounded-lg border border-border bg-background/40 p-3">
-          <p className="font-mono text-[10px] uppercase text-muted">Rules Triggered</p>
-          <p className="mt-1 font-mono text-2xl font-semibold text-foreground">12</p>
+        <div className="rounded-lg border border-border bg-background/40 p-3">
+          <p className="font-mono text-[10px] uppercase text-muted">Rules Hit</p>
+          <p className="mt-1 font-mono text-xl font-semibold text-foreground sm:text-2xl">12</p>
         </div>
-        <div className="flex-1 rounded-lg border border-border bg-background/40 p-3">
-          <p className="font-mono text-[10px] uppercase text-muted">Log Entries (1h)</p>
-          <p className="mt-1 font-mono text-2xl font-semibold text-foreground">13.6K</p>
+        <div className="rounded-lg border border-border bg-background/40 p-3">
+          <p className="font-mono text-[10px] uppercase text-muted">Logs (1h)</p>
+          <p className="mt-1 font-mono text-xl font-semibold text-foreground sm:text-2xl">13.6K</p>
         </div>
       </div>
       <div className="rounded-lg border border-border bg-background/40">
         {logs.map((log) => (
           <div
             key={log.rule}
-            className="flex items-center justify-between border-b border-border/50 px-3 py-2.5 last:border-0"
+            className="flex flex-col gap-1.5 border-b border-border/50 px-3 py-2.5 last:border-0 sm:flex-row sm:items-center sm:justify-between"
           >
-            <div className="flex items-center gap-3">
+            <div className="flex min-w-0 flex-wrap items-center gap-2 sm:gap-3">
               <span
                 className={cn(
-                  "font-mono text-[10px] font-medium",
+                  "shrink-0 font-mono text-[10px] font-medium",
                   log.action === "DENY" ? "text-danger" : "text-success"
                 )}
               >
                 {log.action}
               </span>
-              <span className="font-mono text-xs text-foreground">{log.rule}</span>
+              <span className="truncate font-mono text-xs text-foreground">{log.rule}</span>
             </div>
-            <div className="flex items-center gap-4">
-              <span className="font-mono text-[10px] text-muted">{log.src}</span>
-              <span className="font-mono text-xs text-accent">{log.count}</span>
+            <div className="flex items-center justify-between gap-4 sm:justify-end">
+              <span className="truncate font-mono text-[10px] text-muted">{log.src}</span>
+              <span className="shrink-0 font-mono text-xs text-accent">{log.count}</span>
             </div>
           </div>
         ))}
@@ -271,29 +277,29 @@ function FirewallMockup() {
 function ReportsMockup() {
   return (
     <div className="grid gap-4 md:grid-cols-2">
-      <div className="rounded-lg border border-border bg-background/40 p-4">
+      <div className="rounded-lg border border-border bg-background/40 p-3 sm:p-4">
         <p className="font-mono text-[10px] uppercase tracking-wider text-muted">
           Incident Summary — INC-2026-0342
         </p>
         <div className="mt-4 space-y-2 text-xs">
-          <div className="flex justify-between">
+          <div className="flex justify-between gap-4">
             <span className="text-muted">Severity</span>
             <span className="text-danger font-medium">Critical</span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between gap-4">
             <span className="text-muted">Affected Host</span>
             <span className="font-mono text-foreground">WS-SEC-04</span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between gap-4">
             <span className="text-muted">Threat Type</span>
-            <span className="text-foreground">C2 Communication</span>
+            <span className="text-right text-foreground">C2 Communication</span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between gap-4">
             <span className="text-muted">Duration</span>
             <span className="text-foreground">14m 32s</span>
           </div>
         </div>
-            <div className="mt-4 rounded border border-border bg-surface p-3">
+        <div className="mt-4 rounded border border-border bg-surface p-3">
           <p className="text-[10px] text-muted">Recommended Action</p>
           <p className="mt-1 text-xs leading-relaxed text-foreground/90">
             Isolate host WS-SEC-04 from network segment. Block egress to
@@ -301,7 +307,7 @@ function ReportsMockup() {
           </p>
         </div>
       </div>
-      <div className="rounded-lg border border-border bg-background/40 p-4">
+      <div className="rounded-lg border border-border bg-background/40 p-3 sm:p-4">
         <p className="font-mono text-[10px] uppercase tracking-wider text-muted">
           Export Options
         </p>

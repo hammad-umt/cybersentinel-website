@@ -10,7 +10,7 @@ export function Download() {
   return (
     <AnimatedSection
       id="download"
-      className="border-y border-border bg-surface/50 py-24 md:py-32"
+      className="section-pad border-y border-border bg-surface/50"
     >
       <div className="section-container">
         <SectionHeading
@@ -21,7 +21,7 @@ export function Download() {
           className="mx-auto"
         />
 
-        <div className="mx-auto mt-14 grid max-w-3xl gap-5 md:grid-cols-2">
+        <div className="mx-auto mt-10 grid max-w-3xl gap-4 sm:mt-14 sm:gap-5 md:grid-cols-2">
           <DownloadCard
             icon={Monitor}
             platform={DOWNLOADS.windows.label}
@@ -40,7 +40,7 @@ export function Download() {
           />
         </div>
 
-        <div className="mx-auto mt-12 max-w-2xl rounded-xl border border-border bg-surface p-6">
+        <div className="mx-auto mt-8 max-w-2xl rounded-xl border border-border bg-surface p-5 sm:mt-12 sm:p-6">
           <p className="font-mono text-xs uppercase tracking-wider text-accent">
             System Requirements
           </p>

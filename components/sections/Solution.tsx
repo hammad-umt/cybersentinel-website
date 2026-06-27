@@ -29,9 +29,9 @@ const SOLUTION_POINTS = [
 
 export function Solution() {
   return (
-    <AnimatedSection className="border-y border-border bg-surface/50 py-24 md:py-32">
+    <AnimatedSection className="section-pad border-y border-border bg-surface/50">
       <div className="section-container">
-        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
+        <div className="grid items-center gap-10 sm:gap-14 lg:grid-cols-2 lg:gap-20">
           <SectionHeading
             eyebrow="Our Approach"
             title="One platform to detect, score, and respond"
@@ -58,11 +58,11 @@ export function Solution() {
           </div>
         </div>
 
-        <div className="mt-16 rounded-xl border border-border bg-surface p-6 md:p-8">
+        <div className="mt-10 rounded-xl border border-border bg-surface p-5 sm:mt-16 sm:p-6 md:p-8">
           <p className="font-mono text-xs uppercase tracking-wider text-accent">
             What you get
           </p>
-          <p className="mt-3 text-lg font-medium leading-relaxed text-foreground md:text-xl">
+          <p className="mt-3 text-base font-medium leading-relaxed text-foreground sm:text-lg md:text-xl">
             Packet tracing, firewall analysis, IP reputation checks, VirusTotal
             scanning, AI threat scoring, and exportable reports — unified in one
             desktop application.

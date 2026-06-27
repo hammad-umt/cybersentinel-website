@@ -7,17 +7,17 @@ import { SITE } from "@/lib/constants";
 
 export function Contact() {
   return (
-    <AnimatedSection id="contact" className="border-t border-border py-24 md:py-32">
+    <AnimatedSection id="contact" className="section-pad border-t border-border">
       <div className="section-container">
-        <div className="relative overflow-hidden rounded-2xl border border-border-strong bg-surface p-8 md:p-12">
+        <div className="relative overflow-hidden rounded-2xl border border-border-strong bg-surface p-5 sm:p-8 md:p-12">
           <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-accent/5 blur-3xl" />
 
-          <div className="relative grid gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="relative grid gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
                 Get in Touch
               </p>
-              <h2 className="mt-3 text-2xl font-semibold tracking-tight text-foreground md:text-3xl">
+              <h2 className="mt-3 text-xl font-semibold tracking-tight text-foreground sm:text-2xl md:text-3xl">
                 Questions about the project or want a walkthrough?
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-muted md:text-base">
@@ -26,12 +26,12 @@ export function Contact() {
                 — reach out. We&apos;re happy to demo the platform live or share
                 technical documentation.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button href={`mailto:${SITE.email}`} variant="primary">
-                  <Mail className="h-4 w-4" />
-                  {SITE.email}
+              <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row">
+                <Button href={`mailto:${SITE.email}`} variant="primary" className="w-full sm:w-auto">
+                  <Mail className="h-4 w-4 shrink-0" />
+                  <span className="truncate">{SITE.email}</span>
                 </Button>
-                <Button href="#preview" variant="secondary">
+                <Button href="#preview" variant="secondary" className="w-full sm:w-auto">
                   Schedule a Demo
                 </Button>
               </div>

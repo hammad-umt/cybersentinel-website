@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -13,6 +13,12 @@ const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#080c10",
+};
 
 export const metadata: Metadata = {
   title: "CyberSentinel — AI-Powered Threat Detection Platform",
@@ -53,7 +59,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${jakarta.variable} ${jetbrains.variable} dark`}>
-      <body className="min-h-screen bg-background font-sans text-foreground antialiased">
+      <body className="min-h-screen min-h-[100dvh] bg-background font-sans text-foreground antialiased">
         {children}
       </body>
     </html>

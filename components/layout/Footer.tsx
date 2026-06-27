@@ -6,8 +6,8 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border bg-surface">
-      <div className="section-container py-16 md:py-20">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="section-container py-12 sm:py-16 md:py-20">
+        <div className="grid gap-10 sm:gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2.5">
               <div className="flex h-8 w-8 items-center justify-center rounded-md border border-accent/30 bg-accent/10">
@@ -81,7 +81,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-border pt-8 md:flex-row md:items-center">
+        <div className="mt-10 flex flex-col items-start justify-between gap-4 border-t border-border pt-6 sm:mt-14 sm:pt-8 md:flex-row md:items-center">
           <p className="text-xs text-muted">
             &copy; {year} {SITE.name}. Built as a Final Year Project.
           </p>
