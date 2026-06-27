@@ -39,11 +39,18 @@ export function Button({
 
   if (href !== undefined) {
     const external = href.startsWith("http");
+    const isFileDownload =
+      href.startsWith("/downloads/") &&
+      /\.(exe|msi|zip|AppImage)$/i.test(href);
+    const fileName = isFileDownload ? href.split("/").pop() : undefined;
     return (
       <a
         href={href}
         className={classes}
-        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        {...(external && !isFileDownload
+          ? { target: "_blank", rel: "noopener noreferrer" }
+          : {})}
+        {...(isFileDownload && fileName ? { download: fileName } : {})}
         {...(rest as Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href">)}
       >
         {children}

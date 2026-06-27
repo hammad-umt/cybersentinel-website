@@ -1,2 +1,3 @@
-# Installers are published via GitHub Releases (too large for git).
-# See README.md — do not commit .exe files here.
+# Windows installer: CyberSentinel-Setup.exe (Git LFS)
+# After rebuilding, copy from:
+#   cybersentinel\packaging\windows\output\CyberSentinel-Setup.exe
