@@ -11,13 +11,16 @@ export const SITE = {
   university: "Final Year Project — Software Engineering - UMT",
 } as const;
 
-/** Served from public/downloads/ — direct file download, not GitHub redirect. */
+/**
+ * Windows installer is hosted on GitHub Releases (~221 MB).
+ * Do NOT serve the .exe from public/ — Vercel does not pull Git LFS (users get a ~134 B pointer file).
+ */
 export const DOWNLOADS = {
   windows: {
     label: "Windows",
     version: "1.0.0",
-    size: "196 MB",
-    href: "/downloads/CyberSentinel-Setup.exe",
+    size: "221 MB",
+    href: "https://github.com/hammad-umt/cybersentinel/releases/download/v1.0.0/CyberSentinel-Setup.exe",
     fileName: "CyberSentinel-Setup.exe",
     requirements: "Windows 10/11 (64-bit), Administrator for install, 4 GB RAM, 500 MB disk",
     available: true,
